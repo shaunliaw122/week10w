@@ -1,4 +1,4 @@
-"Entity","Code","Year","Annual.CO..emissions","Continent"
+"Country","Code","Year","Annual_CO2_emissions","Continent"
 "Afghanistan","AFG",1949,14656,"Asia"
 "Afghanistan","AFG",1950,84272,"Asia"
 "Afghanistan","AFG",1951,91600,"Asia"
