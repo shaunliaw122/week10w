@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CO2 Emissions and Global GDP Growth</title>
+
+    <!-- Import Vega & Vega-Lite -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+    <!-- CSS for layout -->
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" 
+          integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" 
+          crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="test.css">
+</head>
+
+<body>
+
+    <div class="page">
+        <!-- Title and description -->
+        <div class="pure-g">
+            <div class="pure-u-1">
+                <h1>CO2 Emissions and Global GDP Growth</h1>
+                <p>Below are visualizations showing the global CO2 emissions and GDP growth by country.</p>
+            </div>
+        </div>
+
+        <!-- Visualization containers -->
+        <div class="pure-g">
+            <!-- GDP Growth Map -->
+            <div class="pure-u-1-2">
+                <h2>Global GDP Growth by Country</h2>
+                <div id="map1" class="vis-container"></div>
+            </div>
+
+            <!-- CO2 Emissions Visualization -->
+            <div class="pure-u-1-2">
+                <h2>CO2 Emissions by Country</h2>
+                <div id="map2" class="vis-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Import test.js -->
+    <script src="test.js"></script>
+
+</body>
+
+</html>

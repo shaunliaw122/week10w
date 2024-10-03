@@ -1,0 +1,134 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A line chart showing aggregated CO2 emission trends over time for selected continents, with tooltips and text annotations.",
+    "title": {
+      "text": "Aggregated CO2 Emission Trends by Continent",
+      "fontSize": 14,
+      "anchor": "middle",
+      "subtitle": "Data from 1750 to 2020",
+      "subtitleFontSize": 12
+    },
+    "data": {
+      "url": "https://raw.githubusercontent.com/shaunliaw122/week10hw/refs/heads/main/final2.csv"
+    },
+    "params": [
+      {
+        "name": "continent_selection",
+        "value": "All",
+        "bind": {
+          "input": "select",
+          "options": [
+            "All",
+            "Africa",
+            "Asia",
+            "Europe",
+            "North America",
+            "Oceania",
+            "South America"
+          ],
+          "name": "Continent: "
+        }
+      }
+    ],
+    "transform": [
+      {
+        "filter": "continent_selection == 'All' || datum.Continent == continent_selection"
+      },
+      {
+        "aggregate": [
+          {
+            "op": "sum",
+            "field": "Annual_CO2_emissions",
+            "as": "Total_CO2_Emissions"
+          }
+        ],
+        "groupby": ["Year", "Continent"]
+      }
+    ],
+    "layer": [
+      {
+        "mark": "line",
+        "encoding": {
+          "x": {
+            "field": "Year",
+            "type": "temporal",
+            "title": "Year"
+          },
+
+          "y": {
+            "field": "Total_CO2_Emissions",
+            "type": "quantitative",
+            "title": "Total CO2 Emissions (tons)",
+            "axis": {
+              "format": "s",
+              "titlePadding": 10
+            },
+            "scale": {
+              "domain": [0, 22000000000]
+            }
+          },
+          "color": {
+            "field": "Continent",
+            "type": "nominal",
+            "legend": {
+              "title": "Continent"
+            }
+          },
+          "tooltip": [
+            {
+              "field": "Year",
+              "type": "temporal",
+              "title": "Year"
+            },
+            {
+              "field": "Total_CO2_Emissions",
+              "type": "quantitative",
+              "title": "Total CO2 Emissions (tons)",
+              "format": ","
+            },
+            {
+              "field": "Continent",
+              "type": "nominal",
+              "title": "Continent"
+            }
+          ]
+        },
+        "width": 600,
+        "height": 400
+      },
+      {
+        "mark": {
+          "type": "text",
+          "align": "left",
+          "baseline": "middle",
+          "dx": 5,
+          "dy": -5,
+          "fontSize": 11,
+          "fontStyle": "italic"
+        },
+        "transform": [
+          {
+            "filter": "year(datum.Year) == 2019"
+          }
+        ],
+        "encoding": {
+          "x": {
+            "field": "Year",
+            "type": "temporal"
+          },
+          "y": {
+            "field": "Total_CO2_Emissions",
+            "type": "quantitative"
+          },
+          "text": {
+            "field": "Continent"
+          },
+          "color": {
+            "field": "Continent",
+            "type": "nominal"
+          }
+        }
+      }
+    ]
+  }
+  
